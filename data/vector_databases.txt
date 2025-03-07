@@ -1,0 +1,34 @@
+# Vector Databases for RAG Systems
+
+Vector databases are specialized storage systems designed to efficiently store, manage, and search vector embeddings. These embeddings are numerical representations of data (such as text, images, or audio) that capture semantic meaning.
+
+## Popular Vector Databases
+
+1. Chroma: An open-source embedding database designed for RAG applications. It's lightweight, easy to use, and can run in-memory or persist to disk.
+
+2. Pinecone: A fully managed vector database optimized for machine learning applications. It offers high scalability and low-latency similarity search.
+
+3. Weaviate: An open-source vector search engine that allows for combining vector search with structured filtering.
+
+4. Milvus: An open-source vector database built for scalable similarity search and AI applications.
+
+5. FAISS (Facebook AI Similarity Search): A library for efficient similarity search and clustering of dense vectors.
+
+## Key Features of Vector Databases
+
+- Similarity search: Finding vectors that are closest to a query vector
+- Hybrid search: Combining vector similarity with metadata filtering
+- Scalability: Handling billions of vectors efficiently
+- Indexing strategies: Various algorithms to balance speed and recall
+- Dimension reduction: Techniques to compress high-dimensional vectors
+- Clustering: Grouping similar vectors together
+
+## Considerations When Choosing a Vector Database
+
+When selecting a vector database for a RAG system, consider:
+- Scalability requirements: How many vectors will you need to store?
+- Query latency needs: How fast must search results be returned?
+- Update frequency: How often will vectors be added or modified?
+- Deployment options: Self-hosted vs. cloud service
+- Integration capabilities: Compatibility with your existing stack
+- Cost considerations: Pricing model and resource requirements

@@ -14,8 +14,22 @@ GOOGLE_API_KEY = os.getenv("GOOGLE_API_KEY")
 
 # Function to load documents
 def load_documents(directory="./data"):
-    loader = DirectoryLoader(directory, glob="**/*.txt")
-    documents = loader.load()
+    from langchain_community.document_loaders import TextLoader
+    import glob
+    
+    # Get all txt files in the directory
+    txt_files = glob.glob(f"{directory}/**/*.txt", recursive=True)
+    documents = []
+    
+    # Load each file
+    for file_path in txt_files:
+        try:
+            loader = TextLoader(file_path)
+            documents.extend(loader.load())
+            print(f"Loaded: {file_path}")
+        except Exception as e:
+            print(f"Error loading file {file_path}: {e}")
+    
     print(f"Loaded {len(documents)} documents")
     return documents
 
@@ -42,7 +56,7 @@ def create_vector_store(splits):
 # Function to create RAG chain
 def create_rag_chain(vector_store):
     # Create Gemini model instance
-    llm = GoogleGenerativeAI(model="gemini-1.0-pro", google_api_key=GOOGLE_API_KEY)
+    llm = GoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GOOGLE_API_KEY)
     
     # Create prompt template
     template = """
