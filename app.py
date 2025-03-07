@@ -36,8 +36,8 @@ def load_documents(directory="./data"):
 # Function to split documents
 def split_documents(documents):
     text_splitter = RecursiveCharacterTextSplitter(
-        chunk_size=1000,
-        chunk_overlap=200
+        chunk_size=1500,
+        chunk_overlap=300
     )
     splits = text_splitter.split_documents(documents)
     print(f"Split into {len(splits)} chunks")
@@ -56,12 +56,14 @@ def create_vector_store(splits):
 # Function to create RAG chain
 def create_rag_chain(vector_store):
     # Create Gemini model instance
-    llm = GoogleGenerativeAI(model="gemini-1.5-flash", google_api_key=GOOGLE_API_KEY)
+    llm = GoogleGenerativeAI(model="gemini-1.5-pro", google_api_key=GOOGLE_API_KEY)
     
     # Create prompt template
     template = """
-    You are a helpful assistant. Use the following context to answer the question.
-    If you don't know the answer, just say you don't know.
+    You are a helpful assistant specialized in explaining RAG (Retrieval-Augmented Generation) systems. 
+    Use the following context to provide a detailed answer to the question.
+    If the information is not explicitly in the context, do your best to synthesize what's available.
+    If you truly don't know, just say you don't know.
     
     Context: {context}
     
@@ -79,11 +81,22 @@ def create_rag_chain(vector_store):
     qa_chain = RetrievalQA.from_chain_type(
         llm=llm,
         chain_type="stuff",
-        retriever=vector_store.as_retriever(search_kwargs={"k": 3}),
+        retriever=vector_store.as_retriever(search_type="similarity",search_kwargs={"k": 5}),
         chain_type_kwargs={"prompt": prompt}
     )
     
     return qa_chain
+
+# Function to debug retrieval
+def debug_retrieval(query, vector_store):
+    print("\n===== DEBUG RETRIEVAL =====")
+    docs = vector_store.similarity_search(query, k=5)
+    for i, doc in enumerate(docs):
+        print(f"\n--- Document {i+1} ---")
+        print(doc.page_content)
+    print("\n===== END DEBUG =====")
+    return docs
+
 
 # Main execution
 if __name__ == "__main__":
@@ -101,5 +114,12 @@ if __name__ == "__main__":
         if query.lower() == 'exit':
             break
         
+        if query.lower() == 'debug':
+            debug_query = input("Enter query to debug: ")
+            relevant_docs = vector_store.similarity_search(debug_query, k=5)
+            print("\nRetrieved documents:")
+            for i, doc in enumerate(relevant_docs):
+                print(f"\nDoc {i+1}:\n{doc.page_content[:300]}...")
+            continue
         result = qa_chain.invoke({"query": query})
         print("\nAnswer:", result["result"])
