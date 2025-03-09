@@ -28,4 +28,6 @@ This project implements a Retrieval-Augmented Generation (RAG) system that combi
    ```
 3. **Ask questions:**
 
-   - Enter your questions at the prompt. Type exit to quit the application.
+   - Enter your questions at the prompt. Type `exit` to quit the application.
+
+3. **Ask questions:**
