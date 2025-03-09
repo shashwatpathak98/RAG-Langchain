@@ -23,3 +23,11 @@ This project implements a Retrieval-Augmented Generation (RAG) system that combi
    git clone <repository-url>
    cd RAG-Langchain
    ```
+
+2. **Create a virtual environment:**
+    ```bash
+   python -m venv venv
+   source venv/bin/activate  
+   <!-- # On Windows: -->
+   venv\Scripts\activate
+    ```
