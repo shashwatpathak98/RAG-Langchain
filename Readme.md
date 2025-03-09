@@ -30,4 +30,6 @@ This project implements a Retrieval-Augmented Generation (RAG) system that combi
 
    - Enter your questions at the prompt. Type `exit` to quit the application.
 
-3. **Ask questions:**
+## License
+
+   - This project is licensed under the MIT License.
