@@ -29,6 +29,6 @@ This project implements a Retrieval-Augmented Generation (RAG) system that combi
    ```bash
    python -m venv venv
    source venv/bin/activate
-   [//]: # On Windows:
+   // # On Windows:
    venv\Scripts\activate
    ```
