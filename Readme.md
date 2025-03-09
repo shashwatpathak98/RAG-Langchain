@@ -24,5 +24,5 @@ This project implements a Retrieval-Augmented Generation (RAG) system that combi
 
 2. **Run the application:**
    ```bash
-  python app.py
+      python app.py
    ```
