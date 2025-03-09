@@ -19,15 +19,16 @@ This project implements a Retrieval-Augmented Generation (RAG) system that combi
 ## Installation
 
 1. **Clone the repository:**
+
    ```bash
    git clone <repository-url>
    cd RAG-Langchain
    ```
 
 2. **Create a virtual environment:**
-    ```bash
+   ```bash
    python -m venv venv
-   source venv/bin/activate  
-   <!-- # On Windows: -->
+   source venv/bin/activate
+   [//]: # On Windows:
    venv\Scripts\activate
-    ```
+   ```
