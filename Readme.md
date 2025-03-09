@@ -16,19 +16,13 @@ This project implements a Retrieval-Augmented Generation (RAG) system that combi
 - **Interactive Interface**: Simple command-line interface for querying the system
 - **Debug Mode**: Examine retrieved documents to understand system behavior
 
-## Installation
+## Usage
 
-1. **Clone the repository:**
+1. **Add documents to the knowledge base:**
 
+   - Place your text files in the data directory.
+
+2. **Run the application:**
    ```bash
-   git clone <repository-url>
-   cd RAG-Langchain
-   ```
-
-2. **Create a virtual environment:**
-   ```bash
-   python -m venv venv
-   source venv/bin/activate
-   # On Windows:
-   venv\Scripts\activate
+  python app.py
    ```
